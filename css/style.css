@@ -1,0 +1,198 @@
+a, p, li , button, label {
+  font-family: 'El Messiri', sans-serif;
+}
+html {
+  background-color: black;
+}
+body {
+  outline: #2460A7FF solid 2px;
+  display: grid;
+  grid-template-rows: 100px 1fr 100px;
+  grid-template-areas: "header" "main" "footer";
+  width: 80%;
+  margin: auto;
+  background: #2460A7FF;
+}
+body p, body label {
+  color: #B3C7D6FF;
+}
+
+body li {
+  font-weight: bold;
+}
+header {
+  grid-area: header;
+  /* outline: red solid 2px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background-color:#B3C7D6FF;
+  
+}
+header section {
+  /* outline: green solid 2px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+header section img {
+  height: 70px;
+}
+header section h2 {
+  font-family: 'Staatliches', cursive;
+}
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+header nav div {
+  /* outline: blue solid 1px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  transition: border-bottom 200ms linear ;
+}
+header nav div:hover {
+  border-bottom: solid 4px #2460A7FF;
+}
+header nav div a {
+  text-decoration: none;
+  color: darkblue;
+}
+main {
+  grid-area: main;
+  padding: 2rem;
+}
+main article p {
+  /* outline: yellow solid 2px; */
+  line-height: 1.75rem;
+  font-size: 1.5rem;
+  text-align: justify;
+}
+#imgSection {
+  /* outline: lightblue dashed 2px; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "img1 img2 img3";
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  filter: blur(5px);
+}
+#imgSection div {
+  outline: lightblue solid 3px;
+  height: 452px;
+  overflow: hidden;
+}
+#imgSection div img {
+  width:100%;
+  height:100%;
+  object-fit:fill;
+  transform: scale(1);
+  transition: transform 300ms ;
+}
+#imgSection div img:hover {
+  transform: scale(1.15);
+}
+#img1 {grid-area: img1;}
+#img2 {grid-area: img2;}
+#img2 {grid-area: img3;}
+
+footer {
+  /* outline: orange solid 2px; */
+  grid-area: footer;
+  padding: 0 2rem;
+  background-color: #B3C7D6FF;
+}
+#result {
+  /* outline: green solid 2px; */
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#result ul li{
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+ul {
+  list-style-type:circle;
+  list-style-position: inside;
+  /* outline: red solid 2px; */
+  padding: 1rem 1rem;
+  background-color: #B3C7D6FF;
+}
+#limitGetter {
+  /* outline: red solid 2px; */
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+#limitGetter label {
+  font-size: 1.5rem;
+  align-self: flex-end;
+}
+#limitGetter input {
+  height: 1.5rem;
+  font-size: 1.25rem;
+  text-align: center;
+  font-weight: bold;
+}
+#limitGetter input:focus {
+  background-color: lightblue;
+}
+#results {
+  /* outline: red solid 2px; */
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+#results button, #limitGetter button {
+  height: 2rem;
+  width: 8rem;
+
+}
+#small , #buttons{
+  /* outline: red solid 2px; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+footer div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+  FOOTER P {
+      color: #2460A7FF;
+  }
+  button {
+      color: #2460A7FF;
+      font-weight: bold;
+  }
+  li {
+      color:#2460A7FF ;
+  }
+  #number {
+      color: #2460A7FF;
+  }
