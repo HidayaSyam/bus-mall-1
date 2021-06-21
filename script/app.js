@@ -133,12 +133,15 @@ function begin() { // main body ///////////////////main body ///////////////////
       switch(ImgObj.allImg[i].path) {
       case pos1.src.split('/')[4]:
         ImgObj.allImg[i].shown++;
+        if (iteration == limit - 1) ImgObj.allImg[i].shown--;
         break;
       case pos2.src.split('/')[4]:
         ImgObj.allImg[i].shown++;
+        if (iteration == limit -1 ) ImgObj.allImg[i].shown--;
         break;
       case pos3.src.split('/')[4]:
         ImgObj.allImg[i].shown++;
+        if (iteration == limit -1) ImgObj.allImg[i].shown--;
         break;
       }
     }
@@ -224,22 +227,21 @@ function view() {
   // console.log(votedArr);
   
 
-  let context = myChart.getContext('2d');
+  let ctx = myChart.getContext('2d');
   let labels = namesArr.slice(0);
-  let datasets = [];
 
 
   function returnDatasets() {
     return ({
       label: "Voted",
-      backgroundColor: "White",
+      backgroundColor: "coral",
       data: votedArr
     });
   }
   function returnViewed() {
     return ({
       label: "Viewed",
-      backgroundColor: "gray",
+      backgroundColor: "darkblue",
       data: vieweddArr
     });
   }
@@ -253,12 +255,12 @@ function view() {
     type: 'bar',
     data,
     options: {
-      color: 'red'
+      color: 'rgb(36,96,167)'
     }
   };
 
   let mainChart = new Chart(
-    myChart,
+    ctx,
     config
   );
 
