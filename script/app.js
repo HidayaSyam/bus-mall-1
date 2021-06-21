@@ -8,6 +8,7 @@ for (let i = 0; i < imgArr.length; i++ ) {
 }
 // console.log(allIndices);
 
+let ALL = [];
 let all = [];
 let limit = 25;
 let roundlimit = document.getElementById('number');
@@ -150,6 +151,8 @@ function begin() { // main body ///////////////////main body ///////////////////
       viewRes.style.color = 'white';
       // console.log(ImgObj.allImg);
       all = ImgObj.allImg;
+      ALL = ImgObj.allImg.slice(0);
+      console.log(ImgObj.allImg);
       return;
     }
   }
@@ -192,10 +195,72 @@ function resetAll() {
 /////////////////////////////////////////////////////////////////////////
 function view() {
 
+
+
+
+  let myChart = document.createElement('canvas');
   let resButton = document.querySelector('#viewRes');
-  let result = document.getElementById('result');
+  let result = document.getElementById('result'); // container div
   let ul = document.createElement('ul');
+  result.appendChild(myChart);
   result.appendChild(ul);
+  
+  myChart.setAttribute('width', '400px');
+  myChart.setAttribute('height', '400px');
+  myChart.setAttribute('id', 'myChart');
+  myChart.style.marginBottom = '2rem';
+  myChart.style.background = '#B3C7D6FF';
+  myChart.style.borderRadius = '50px';
+  myChart.style.padding = '1rem';
+
+  let namesArr = ALL.slice(0);
+  let vieweddArr = ALL.slice(0);
+  let votedArr = ALL.slice(0);
+  namesArr = namesArr.map(item => item.name);
+  vieweddArr = vieweddArr.map(item => item.shown);
+  votedArr = votedArr.map(item => item.clicked); // all good we have all the arrays needed
+  // console.log(namesArr);
+  // console.log(vieweddArr);
+  // console.log(votedArr);
+  
+
+  let context = myChart.getContext('2d');
+  let labels = namesArr.slice(0);
+  let datasets = [];
+
+
+  function returnDatasets() {
+    return ({
+      label: "Voted",
+      backgroundColor: "White",
+      data: votedArr
+    });
+  }
+  function returnViewed() {
+    return ({
+      label: "Viewed",
+      backgroundColor: "gray",
+      data: vieweddArr
+    });
+  }
+  
+  const data = {
+    labels: labels,
+    datasets: [returnDatasets(), returnViewed()]
+  };
+
+  const config = {
+    type: 'bar',
+    data,
+    options: {
+      color: 'red'
+    }
+  };
+
+  let mainChart = new Chart(
+    myChart,
+    config
+  );
 
   for (let i = 0; i < all.length; i++) {
     let li = document.createElement('li');

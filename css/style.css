@@ -144,7 +144,7 @@ footer {
   /* outline: orange solid 2px; */
   grid-area: footer;
   padding: 0 2rem;
-  background-color: #B3C7D6FF;
+  background-color: rgb(179, 199, 214);
 }
 #result {
   /* outline: green solid 2px; */
@@ -232,7 +232,7 @@ footer div {
       border-radius: 25px;
   }
   li {
-      color:#2460A7FF ;
+      color:rgb(36, 96, 167) ;
   }
   #number {
       color: #2460A7FF;
