@@ -7,7 +7,7 @@ html {
 body {
   outline: #2460A7FF solid 2px;
   display: grid;
-  grid-template-rows: 100px 1fr 100px;
+  grid-template-rows: 120px 1fr 100px;
   grid-template-areas: "header" "main" "footer";
   width: 80%;
   margin: auto;
@@ -31,11 +31,15 @@ header {
   
 }
 header section {
-  /* outline: green solid 2px; */
+  border: white solid 2px; 
+  background-color: white;
+  width: 86px;
+  border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0.5rem;
 }
 header section img {
   height: 70px;
@@ -77,15 +81,34 @@ main article p {
 }
 #imgSection {
   /* outline: lightblue dashed 2px; */
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: "img1 img2 img3";
   gap: 2rem;
   margin-bottom: 2.5rem;
-  filter: blur(5px);
+  /* filter: blur(5px); */
+  border-radius: 50px;
+  background: url(https://i.pinimg.com/originals/f5/98/76/f59876d316abc628202df9012706d68f.gif);
+  background-position-x: center;
+  background-position-y: center;
+}
+#imgSection #message{
+  content: "Images will show up once you click begin";
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-family: 'El Messiri', sans-serif;
+
+  text-align: center;
+  /* outline: red solid 2px; */
 }
 #imgSection div {
-  outline: lightblue solid 3px;
+  /* outline: lightblue solid 3px; */
   height: 452px;
   overflow: hidden;
 }
@@ -97,11 +120,25 @@ main article p {
   transition: transform 300ms ;
 }
 #imgSection div img:hover {
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
-#img1 {grid-area: img1;}
-#img2 {grid-area: img2;}
-#img2 {grid-area: img3;}
+#img1 {
+  grid-area: img1; border-radius: 50px; border: #B3C7D6FF solid 2px ;
+  /* background: url(https://cdn.dribbble.com/users/32512/screenshots/3227273/loader.gif);
+  background-position-x: center;
+  background-position-y: -85px; */
+}
+#img2 {
+  grid-area: img2; border-radius: 50px; border: #B3C7D6FF solid 2px ;
+  /* background: url(https://cdn.dribbble.com/users/32512/screenshots/3227273/loader.gif);
+  background-position-x: center;
+  background-position-y: -85px; */
+}
+#img3 {
+  grid-area: img3; border-radius: 50px; border: #B3C7D6FF solid 2px ;/*background: url(https://cdn.dribbble.com/users/32512/screenshots/3227273/loader.gif);
+  background-position-x: center;
+  background-position-y: -85px; */
+}
 
 footer {
   /* outline: orange solid 2px; */
@@ -125,11 +162,13 @@ ul {
   list-style-type:circle;
   list-style-position: inside;
   /* outline: red solid 2px; */
-  padding: 1rem 1rem;
+  padding: 2rem 2rem;
   background-color: #B3C7D6FF;
+
+  border-radius: 50px;
 }
 #limitGetter {
-  /* outline: red solid 2px; */
+   /* outline: red solid 2px;  */
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
@@ -146,6 +185,7 @@ ul {
   font-size: 1.25rem;
   text-align: center;
   font-weight: bold;
+  border-radius: 25px;
 }
 #limitGetter input:focus {
   background-color: lightblue;
@@ -161,13 +201,13 @@ ul {
   width: 8rem;
 
 }
-#small , #buttons{
+#small {
   /* outline: red solid 2px; */
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 8.45rem;
 }
 footer {
   display: flex;
@@ -189,6 +229,7 @@ footer div {
   button {
       color: #2460A7FF;
       font-weight: bold;
+      border-radius: 25px;
   }
   li {
       color:#2460A7FF ;
@@ -196,3 +237,30 @@ footer div {
   #number {
       color: #2460A7FF;
   }
+  #rounds {
+    /* outline: yellow solid 2px; */
+    /* margin: 0 2rem; */
+    width: 100%;
+    display: flex;
+    align-items:center ;
+    justify-content: space-between;
+  }
+  #rounds p ,  #rounds p strong{
+    font-size: 1.25rem;
+    align-self: flex-end;
+  }
+  #rounds p strong {
+    font-weight: bold;
+    color: yellow;
+  }
+  /* #imgSection:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: url(https://images.pexels.com/photos/2486168/pexels-photo-2486168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500) no-repeat -30px -50px no-scroll;
+    background: yellow;
+    border-radius: 50px;
+    position: absolute;
+    display: inline-block;
+    opacity: 100%;
+    } */

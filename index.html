@@ -15,7 +15,7 @@
 <body>
 
     <header>
-        <section>
+        <section id="Logo">
             <img src="./img/logo.png" alt="">
             <h2>BusMall</h2>
         </section>
@@ -38,10 +38,16 @@
 
     <main>
         <div id="limitGetter">
-            <section id="small">
-                <label for="number">Enter the number of rounds before starting</label>
-                <input type="number" name="" id="number" placeholder="25 (default)">
-            </section>
+            <div id="rounds">
+                <section id="small">
+                    <label for="number">Enter the number of rounds before starting</label>
+                    <input type="number" name="" id="number" placeholder="25">
+                </section>
+                <p>
+                   <strong id="leftRnds">25</strong> rounds left
+                </p>
+            </div>
+            
             <section id="buttons">
                 <button id="begin" onclick="begin()">Begin</button>
                 <button id="resetAll" onclick="resetAll()">Reset</button>
@@ -62,11 +68,16 @@
                 
             </div>
 
+            <p id="message">Catalogue will show up once you click begin</p>
         </section>
 
         <section id="results">
             <button disabled id="viewRes" onclick="view()">View Results</button>
         </section>
+
+        <div id="chartResult">
+            <canvas id="myChart"></canvas>
+        </div>
 
         <div id="result">
             
