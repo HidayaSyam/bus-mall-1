@@ -6,8 +6,12 @@ let allIndices = []; // holds all the indices, it will be used as a reference fo
 for (let i = 0; i < imgArr.length; i++ ) {
   allIndices.push(i);
 }
-// console.log(allIndices);
-
+let clearSection = document.getElementById('clear');
+clearSection.style.display = 'none';
+let emptyArr  = [];
+let temporary = [];
+let storedArr = [];
+let ALLliteral = [];
 let ALL = [];
 let all = [];
 let limit = 25;
@@ -25,7 +29,8 @@ let img3Div = document.getElementById('img3');
 img1Div.style.border = 'none';
 img2Div.style.border = 'none';
 img3Div.style.border = 'none';
-/////////////////////////////////////////////////////////////////////////
+
+
 function begin() { // main body ///////////////////main body ///////////////////main body ///////////////////main body ///////////////////main body ///////////////
 
   let toBeUsedArr = [];
@@ -63,8 +68,9 @@ function begin() { // main body ///////////////////main body ///////////////////
 
   let min = 0;
   let max = imgArr.length - 1;
+
   /////////////////////////////////////////////////////////////////////////
-  function ImgObj(name, path) {
+  function ImgObj(name, path) {// the cionstructor
     this.name = name;
     this.path = path;
     this.clicked = 0;
@@ -74,22 +80,15 @@ function begin() { // main body ///////////////////main body ///////////////////
   ImgObj.allImg = [];
 
   /////////////////////////////////////////////////////////////////////////
-
   function getRand(min, max) { // returns an array containing 3 random unique numbers, and updates an array holding the numbers used in the last or mosr recent iteration (still thinking what should I do with it) //
-    // allIndices
+
     max = imgArr.length - 1;
     let tempArr = allIndices.slice(0);
-    // console.log(tempArr);
     let c = 0;
     for (let i = 0; i < allIndices.length; i++) {
       let randind = Math.floor(Math.random() * (max - min + 1) + min);
       max--;
-      // console.log('--------------');
-      // console.log(randind);
       let rand = tempArr[randind];
-      // console.log(tempArr);
-      // console.log(rand);
-      // console.log('--------------');
       if (lastIter.includes(rand) && arrOfRand.includes(rand)) {
         continue;
       } else {
@@ -97,23 +96,15 @@ function begin() { // main body ///////////////////main body ///////////////////
           arrOfRand[c] = rand;
           c++;
           tempArr.splice(tempArr.indexOf(rand),1);
-          // console.log('tempArr',y, 'rand',rand);
         } else {
-          console.log(arrOfRand);
-          console.log(lastIter);
-          console.log('******************************************');
           break;
         }
-
       }
-
     }
-
 
     lastIter = arrOfRand; // the array holding the numbers used in the latest iteration
     return arrOfRand;
   }
-
 
   for (let i = 0; i < imgArr.length; i++) {
     new ImgObj(imgArr[i].split('.')[0], imgArr[i]);
@@ -152,20 +143,28 @@ function begin() { // main body ///////////////////main body ///////////////////
       viewRes.disabled = false;
       viewRes.style.background = 'green';
       viewRes.style.color = 'white';
-      // console.log(ImgObj.allImg);
       all = ImgObj.allImg;
       ALL = ImgObj.allImg.slice(0);
-      console.log(ImgObj.allImg);
+
+      for (let i = 0; i < ALL.length; i++) { // transforming ALL from an array of constructor objects to an array of literal objects every time ALL gets reassigned
+        if (ALL) {
+          let {name, path, clicked, shown} = ALL[i];
+          ALLliteral.push({name: name , path: path, clicked: clicked, shown: shown });
+          // destructuring to assign values which is a bit faster, and thus we get the array holding literal objects
+          emptyArr.push({name: name, path: path, clicked: 0, shown: 0});
+          // an empty array to initialize the array temporary because we will have null or the array is still not in the locallStorage for the very first time you start the application
+        }
+      }
       return;
     }
   }
 
   imgSection.addEventListener('click', check);
+
   /////////////////////////////////////////////////////////////////////////
-  function check(e) {
-
+  function check(e) { //assign paths or set src attributes for images
     let pth = e.target.src.split('/')[4];
-
+    
     for (let i = 0; i < ImgObj.allImg.length; i++ ) {
 
       if (pth == pos1.src.split('/')[4] && ImgObj.allImg[i].path == pos1.src.split('/')[4]) {
@@ -182,49 +181,44 @@ function begin() { // main body ///////////////////main body ///////////////////
     leftRnds.textContent = Number(leftRnds.textContent) - 1;
     render();
   }
-  /////////////////////////////////////////////////////////////////////////
-
-
-  function drawChart() {
-
-  }
-
 } // end of main body////////////// end of main body////////////// end of main body////////////// end of main body////////////// end of main body//////////////////
+
 /////////////////////////////////////////////////////////////////////////
-function resetAll() {
+function resetAll() { // reload the page
 
   location.reload();
 }
 /////////////////////////////////////////////////////////////////////////
-let result = document.getElementById('result'); 
-result.style.display = 'none';
-function view() {
 
+let result = document.getElementById('result'); // just to make the div disappear before it gets shown not to ruin paddings and margins
+result.style.display = 'none';
+function view() { // view results in a list and as a chart
+
+  temporary = JSON.parse(localStorage.getItem('ALL'));
+  if (!temporary) {
+    temporary = emptyArr.slice(0);
+  }
+  for (let i = 0; i < ALLliteral.length; i++) {
+    temporary[i].clicked += ALLliteral[i].clicked;
+    temporary[i].shown += ALLliteral[i].shown;
+  }
+  localStorage.setItem('ALL', JSON.stringify(temporary));
+
+
+  console.log(temporary);
+  ALL = temporary.slice(0);
 
 
   result.style.display = 'block';
-  // let myChart = document.createElement('canvas');
   let resButton = document.querySelector('#viewRes');
-  // container div
   let ul = document.createElement('ul');
   result.appendChild(ul);
-  // myChart.setAttribute('width', '400px');
-  // myChart.setAttribute('height', '400px');
-  // myChart.setAttribute('id', 'myChart');
-  //
-  // myChart.style.background = '#B3C7D6FF';
-  // myChart.style.borderRadius = '50px';
-  // myChart.style.padding = '1rem';
-
   let namesArr = ALL.slice(0);
   let vieweddArr = ALL.slice(0);
   let votedArr = ALL.slice(0);
   namesArr = namesArr.map(item => item.name);
   vieweddArr = vieweddArr.map(item => item.shown);
-  votedArr = votedArr.map(item => item.clicked); // all good we have all the arrays needed
-  // console.log(namesArr);
-  // console.log(vieweddArr);
-  // console.log(votedArr);
+  votedArr = votedArr.map(item => item.clicked); // all good we have all the arrays needed, these arrays hold the values for a single key per each object
 
   let ctx = document.getElementById('myChart').getContext('2d');
   let myChart = new Chart(ctx, {
@@ -234,113 +228,68 @@ function view() {
       datasets: [{
         label: 'Viewed', // 1st
         data: vieweddArr,
-        backgroundColor: 'rgba(75, 192, 192, 1)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'coral',
+        borderColor: 'coral',
         borderWidth: 1
       },
       {
         label: 'Voted', // 2nd
         data: votedArr,
-        backgroundColor: 'rgba(255, 99, 132, 1',
-        borderColor: 'rgba(255, 159, 64, 1)',
+        backgroundColor: 'rgb(36, 96, 167)',
+        borderColor: 'rgb(36, 96, 167)',
         borderWidth: 1
       }]
     },
+    plugins: [{ // I am really not sure about this part, I copied from the internet and thankfully it works (just to change the background color)
+      beforeDraw: (chart) => {
+        // const ctx = chart.canvas.getContext('2d');
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-over';
+        ctx.fillStyle = 'rgb(179,199,214)';
+        ctx.fillRect(0, 0, chart.width, chart.height);
+        ctx.restore();
+      }
+    }],
     options: {
-      legend: {
-        color: 'white'
+      layout: {
+        padding: 20
       },
       scales: {
-        yAxes: [{
+        y: {
           ticks: {
-            fontColor: 'white',
-            stepSize: 1,
-            beginAtZero: true
-          }
-        }]
-      }
+            beginAtZero:true,
+            color: 'rgb(36, 96, 167)'
+          },
+        },
+        x: {
+          ticks: {
+            color: 'rgb(36, 96, 167)'
+          },
+        }
+      },
+      color: 'rgb(36, 96, 167)',
     }
   });
 
-  // myChart.style.marginBottom = '2rem';
-  // ctx.style.backgroundColor = 'rgba(179,199,214)';
-
-  // result.appendChild(myChart);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // let ctx = myChart.getContext('2d');
-  // let labels = namesArr.slice(0);
-
-
-  // function returnDatasets() {
-  //   return ({
-  //     label: "Voted",
-  //     backgroundColor: "coral",
-  //     data: votedArr
-  //   });
-  // }
-  // function returnViewed() {
-  //   return ({
-  //     label: "Viewed",
-  //     backgroundColor: "darkblue",
-  //     data: vieweddArr
-  //   });
-  // }
-
-  // const data = {
-  //   labels: labels,
-  //   datasets: [returnDatasets(), returnViewed()]
-  // };
-
-  // const config = {
-  //   type: 'bar',
-  //   data,
-  //   options: {
-  //     color: 'rgb(36,96,167)'
-  //   }
-  // };
-
-  // let mainChart = new Chart(
-  //   ctx,
-  //   config
-  // );
-
-  for (let i = 0; i < all.length; i++) {
+  for (let i = 0; i < ALL.length; i++) { // create li elements and add the necessary values
     let li = document.createElement('li');
     ul.appendChild(li);
-    li.textContent = `${all[i].name} had ${all[i].clicked} votes, and was seen ${all[i].shown} times.`;
+    li.textContent = `${ALL[i].name} had ${ALL[i].clicked} votes, and was seen ${ALL[i].shown} times.`;
   }
+  clearSection.style.display = 'flex';
+  ///////////////////////////////////////////////////////////////////////////////////////////////
   modifyShowResultsButton(resButton);
 }
 /////////////////////////////////////////////////////////////////////////
-function modifyShowResultsButton(resButton) {
+function modifyShowResultsButton(resButton) { // just to change the style and the message of the "show results" button
 
   resButton.disabled = true;
   resButton.style.background = 'initial'; // the view results button will stop showing the results everytime you click it, it will do that only once then it will be disabled
   resButton.textContent = 'Results';
   resButton.style.border = 'none';
+}
+
+function clearData() {
+  localStorage.clear();
+  resetAll();
 }

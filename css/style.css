@@ -101,11 +101,23 @@ main article p {
   left: 0;
   right: 0;
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3.5rem;
   font-family: 'El Messiri', sans-serif;
 
   text-align: center;
   /* outline: red solid 2px; */
+}
+#ctdncont {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-family: 'El Messiri', sans-serif;
+
+  text-align: center;
 }
 #imgSection div {
   /* outline: lightblue solid 3px; */
@@ -203,7 +215,7 @@ ul {
   align-content: center;
   justify-content: center;
 }
-#results button, #limitGetter button {
+#results button, #limitGetter button , #clearData{
   height: 2rem;
   width: 8rem;
 
@@ -274,4 +286,41 @@ footer div {
     } */
   #viewRes {
     margin-bottom: 2rem;
+  }
+  canvas {
+    border-radius: 50px;
+  }
+  #clear {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #clearData {
+    /* background: url(https://i.pinimg.com/originals/1a/33/ab/1a33ab0abdb651b19bdde7264ca23f1b.gif);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 5.5rem; */
+    height: 4rem;
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  #clearData img {
+    width: 3rem;
+  }
+  #clearData p {
+    color: red;
+    padding-right: 0.5rem;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  #underbtn {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: darkred;
   }
