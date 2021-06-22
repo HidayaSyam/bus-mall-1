@@ -92,6 +92,7 @@ main article p {
   background: url(https://i.pinimg.com/originals/f5/98/76/f59876d316abc628202df9012706d68f.gif);
   background-position-x: center;
   background-position-y: center;
+  background-size: cover;
 }
 #imgSection #message{
   content: "Images will show up once you click begin";
@@ -101,7 +102,7 @@ main article p {
   left: 0;
   right: 0;
   font-size: 2rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 1.5rem;
   font-family: 'El Messiri', sans-serif;
 
   text-align: center;
