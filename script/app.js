@@ -74,7 +74,7 @@ function begin() { // main body ///////////////////main body ///////////////////
   ImgObj.allImg = [];
 
   /////////////////////////////////////////////////////////////////////////
-  
+
   function getRand(min, max) { // returns an array containing 3 random unique numbers, and updates an array holding the numbers used in the last or mosr recent iteration (still thinking what should I do with it) //
     // allIndices
     max = imgArr.length - 1;
@@ -108,7 +108,7 @@ function begin() { // main body ///////////////////main body ///////////////////
       }
 
     }
-    
+
 
     lastIter = arrOfRand; // the array holding the numbers used in the latest iteration
     return arrOfRand;
@@ -186,7 +186,7 @@ function begin() { // main body ///////////////////main body ///////////////////
 
 
   function drawChart() {
-    
+
   }
 
 } // end of main body////////////// end of main body////////////// end of main body////////////// end of main body////////////// end of main body//////////////////
@@ -196,25 +196,25 @@ function resetAll() {
   location.reload();
 }
 /////////////////////////////////////////////////////////////////////////
+let result = document.getElementById('result'); 
+result.style.display = 'none';
 function view() {
 
 
 
-
-  let myChart = document.createElement('canvas');
+  result.style.display = 'block';
+  // let myChart = document.createElement('canvas');
   let resButton = document.querySelector('#viewRes');
-  let result = document.getElementById('result'); // container div
+  // container div
   let ul = document.createElement('ul');
-  result.appendChild(myChart);
   result.appendChild(ul);
-  
-  myChart.setAttribute('width', '400px');
-  myChart.setAttribute('height', '400px');
-  myChart.setAttribute('id', 'myChart');
-  myChart.style.marginBottom = '2rem';
-  myChart.style.background = '#B3C7D6FF';
-  myChart.style.borderRadius = '50px';
-  myChart.style.padding = '1rem';
+  // myChart.setAttribute('width', '400px');
+  // myChart.setAttribute('height', '400px');
+  // myChart.setAttribute('id', 'myChart');
+  //
+  // myChart.style.background = '#B3C7D6FF';
+  // myChart.style.borderRadius = '50px';
+  // myChart.style.padding = '1rem';
 
   let namesArr = ALL.slice(0);
   let vieweddArr = ALL.slice(0);
@@ -225,44 +225,109 @@ function view() {
   // console.log(namesArr);
   // console.log(vieweddArr);
   // console.log(votedArr);
-  
 
-  let ctx = myChart.getContext('2d');
-  let labels = namesArr.slice(0);
-
-
-  function returnDatasets() {
-    return ({
-      label: "Voted",
-      backgroundColor: "coral",
-      data: votedArr
-    });
-  }
-  function returnViewed() {
-    return ({
-      label: "Viewed",
-      backgroundColor: "darkblue",
-      data: vieweddArr
-    });
-  }
-  
-  const data = {
-    labels: labels,
-    datasets: [returnDatasets(), returnViewed()]
-  };
-
-  const config = {
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let myChart = new Chart(ctx, {
     type: 'bar',
-    data,
+    data: {
+      labels: namesArr,
+      datasets: [{
+        label: 'Viewed', // 1st
+        data: vieweddArr,
+        backgroundColor: 'rgba(75, 192, 192, 1)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      },
+      {
+        label: 'Voted', // 2nd
+        data: votedArr,
+        backgroundColor: 'rgba(255, 99, 132, 1',
+        borderColor: 'rgba(255, 159, 64, 1)',
+        borderWidth: 1
+      }]
+    },
     options: {
-      color: 'rgb(36,96,167)'
+      legend: {
+        color: 'white'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            fontColor: 'white',
+            stepSize: 1,
+            beginAtZero: true
+          }
+        }]
+      }
     }
-  };
+  });
 
-  let mainChart = new Chart(
-    ctx,
-    config
-  );
+  // myChart.style.marginBottom = '2rem';
+  // ctx.style.backgroundColor = 'rgba(179,199,214)';
+
+  // result.appendChild(myChart);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // let ctx = myChart.getContext('2d');
+  // let labels = namesArr.slice(0);
+
+
+  // function returnDatasets() {
+  //   return ({
+  //     label: "Voted",
+  //     backgroundColor: "coral",
+  //     data: votedArr
+  //   });
+  // }
+  // function returnViewed() {
+  //   return ({
+  //     label: "Viewed",
+  //     backgroundColor: "darkblue",
+  //     data: vieweddArr
+  //   });
+  // }
+
+  // const data = {
+  //   labels: labels,
+  //   datasets: [returnDatasets(), returnViewed()]
+  // };
+
+  // const config = {
+  //   type: 'bar',
+  //   data,
+  //   options: {
+  //     color: 'rgb(36,96,167)'
+  //   }
+  // };
+
+  // let mainChart = new Chart(
+  //   ctx,
+  //   config
+  // );
 
   for (let i = 0; i < all.length; i++) {
     let li = document.createElement('li');

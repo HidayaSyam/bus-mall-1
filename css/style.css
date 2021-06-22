@@ -148,7 +148,7 @@ footer {
 }
 #result {
   /* outline: green solid 2px; */
-  margin: 2rem 0;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,6 +163,7 @@ ul {
   list-style-position: inside;
   /* outline: red solid 2px; */
   padding: 2rem 2rem;
+  margin-top: 1.75rem;
   background-color: #B3C7D6FF;
   width: 95.5%;
   /* outline: yellow solid 3px; */
@@ -271,4 +272,6 @@ footer div {
     display: inline-block;
     opacity: 100%;
     } */
-  
+  #viewRes {
+    margin-bottom: 2rem;
+  }
