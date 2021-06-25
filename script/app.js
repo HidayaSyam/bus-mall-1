@@ -13,7 +13,7 @@ let temporary = [];
 let storedArr = [];
 let ALLliteral = [];
 let ALL = [];
-let all = [];
+let alltest = [];
 let limit = 25;
 let roundlimit = document.getElementById('number');
 let lastIter = []; ///////////////////////////////////////////////// keeping track of lastIter
@@ -143,7 +143,7 @@ function begin() { // main body ///////////////////main body ///////////////////
       viewRes.disabled = false;
       viewRes.style.background = 'green';
       viewRes.style.color = 'white';
-      all = ImgObj.allImg;
+      alltest = ImgObj.allImg;
       ALL = ImgObj.allImg.slice(0);
 
       for (let i = 0; i < ALL.length; i++) { // transforming ALL from an array of constructor objects to an array of literal objects every time ALL gets reassigned
