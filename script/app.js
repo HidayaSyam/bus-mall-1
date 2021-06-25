@@ -122,15 +122,15 @@ function begin() { // main body ///////////////////main body ///////////////////
 
     for(let i = 0; i < ImgObj.allImg.length; i++ ) {
       switch(ImgObj.allImg[i].path) {
-      case pos1.src.split('/')[4]:
+      case pos1.src.split('/')[5]:
         ImgObj.allImg[i].shown++;
         if (iteration === limit - 1) ImgObj.allImg[i].shown--;
         break;
-      case pos2.src.split('/')[4]:
+      case pos2.src.split('/')[5]:
         ImgObj.allImg[i].shown++;
         if (iteration === limit -1 ) ImgObj.allImg[i].shown--;
         break;
-      case pos3.src.split('/')[4]:
+      case pos3.src.split('/')[5]:
         ImgObj.allImg[i].shown++;
         if (iteration === limit -1) ImgObj.allImg[i].shown--;
         break;
@@ -153,12 +153,12 @@ function begin() { // main body ///////////////////main body ///////////////////
           // destructuring to assign values which is a bit faster, and thus we get the array holding literal objects
           emptyArr.push({name: name, path: path, clicked: 0, shown: 0});
           // an empty array to initialize the array temporary because we will have null or the array is still not in the locallStorage for the very first time you start the application
+
         }
       }
       return;
     }
   }
-
   imgSection.addEventListener('click', check);
 
   /////////////////////////////////////////////////////////////////////////
