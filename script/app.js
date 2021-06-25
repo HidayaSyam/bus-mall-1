@@ -38,7 +38,7 @@ function begin() { // main body ///////////////////main body ///////////////////
 
   message.style.display = 'none';
 
-  if (Number(roundlimit.value) == 0) {
+  if (Number(roundlimit.value) === 0) {
     limit = 25;
   } else {
     limit = Number(roundlimit.value);
@@ -124,15 +124,15 @@ function begin() { // main body ///////////////////main body ///////////////////
       switch(ImgObj.allImg[i].path) {
       case pos1.src.split('/')[4]:
         ImgObj.allImg[i].shown++;
-        if (iteration == limit - 1) ImgObj.allImg[i].shown--;
+        if (iteration === limit - 1) ImgObj.allImg[i].shown--;
         break;
       case pos2.src.split('/')[4]:
         ImgObj.allImg[i].shown++;
-        if (iteration == limit -1 ) ImgObj.allImg[i].shown--;
+        if (iteration === limit -1 ) ImgObj.allImg[i].shown--;
         break;
       case pos3.src.split('/')[4]:
         ImgObj.allImg[i].shown++;
-        if (iteration == limit -1) ImgObj.allImg[i].shown--;
+        if (iteration === limit -1) ImgObj.allImg[i].shown--;
         break;
       }
     }
@@ -167,13 +167,13 @@ function begin() { // main body ///////////////////main body ///////////////////
     
     for (let i = 0; i < ImgObj.allImg.length; i++ ) {
 
-      if (pth == pos1.src.split('/')[4] && ImgObj.allImg[i].path == pos1.src.split('/')[4]) {
+      if (pth === pos1.src.split('/')[4] && ImgObj.allImg[i].path === pos1.src.split('/')[4]) {
         ImgObj.allImg[i].clicked++;
         break;
-      } else if (pth == pos2.src.split('/')[4] && ImgObj.allImg[i].path == pos2.src.split('/')[4]) {
+      } else if (pth === pos2.src.split('/')[4] && ImgObj.allImg[i].path === pos2.src.split('/')[4]) {
         ImgObj.allImg[i].clicked++;
         break;
-      } else if (pth == pos3.src.split('/')[4] && ImgObj.allImg[i].path == pos3.src.split('/')[4]) {
+      } else if (pth === pos3.src.split('/')[4] && ImgObj.allImg[i].path === pos3.src.split('/')[4]) {
         ImgObj.allImg[i].clicked++;
         break;
       }
